@@ -1,0 +1,26 @@
+<html>
+
+<body>
+
+
+    <a href="http://localhost:3000/">Return</a> 
+    <table>
+        <tr>
+            <th>cty_code</th>
+            <th>co_code</th>
+            <th>cty_name</th>
+            <th>Details</th>
+           
+        </tr><% cities.forEach((cities)=>{%><tr>
+            <td><%= cities.cty_code %></td>
+            <td><%= cities.co_code %></td>
+            <td><%= cities.cty_name %></td>
+            <td>
+               <a href="cities/:cty_code"> <button type="button">Details</button></a>
+            </td> 
+        </tr>
+        <%})%>
+        </table
+
+</body>
+</html>

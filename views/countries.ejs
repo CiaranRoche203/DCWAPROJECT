@@ -1,0 +1,31 @@
+<html>
+
+<body>
+
+
+    <a href="http://localhost:3000/addCountry">Add Country</a> 
+    <table>
+        <tr>
+            <th>co_code</th>
+            <th>co_name</th>
+            <th>co_details</th>
+            <th>update</th>
+            <th>delete</th>
+        </tr><% countries.forEach((countries)=>{%><tr>
+            <td><%= countries.co_code %></td>
+            <td><%= countries.co_name %></td>
+            <td><%= countries.co_details %></td>
+            <td>
+               <a href="http://localhost:3000/addCountry"> <button type="button">Update</button></a>
+            </td> 
+            <td>
+                <a href="/countries/:co_code"> <button type="button">Delete</button></a>
+            </td> 
+        </tr>
+        <%})%>
+        </table
+
+</body>
+
+
+</html>
