@@ -4,18 +4,18 @@
     <table>
         <tr>
             <th>cty_code</th>
-            <th>co_name</th>
-            <th>cty_code</th>
-        </tr><% countries.forEach((countries)=>{%><tr>
-            <td><%= countries.co_code %></td>
-            <td><%= countries.co_name %></td>
-            <td><%= countries.co_details %></td>
-            <td>
-               <a href="http://localhost:3000/updateCountry/<%= countries.co_code %>"> <button type="button">Update</button></a>
-            </td> 
-            <td>
-                <a href="/countries/<%= countries.co_code %>"> <button type="button">Delete</button></a>
-            </td> 
+            <th>co_code</th>
+            <th>cty_name</th>
+            <th>population</th>
+            <th>isCoastal</th>
+            <th>areaKM</th>
+        </tr><% cities.forEach((cities)=>{%><tr>
+            <td><%= cities.cty_code %></td>
+            <td><%= cities.co_code %></td>
+            <td><%= cities.cty_name %></td>
+            <td><%= cities.population %></td>
+            <td><%= cities.isCoastal %></td>
+            <td><%= cities.areaKM %></td>
         </tr>
         <%})%>
         </table

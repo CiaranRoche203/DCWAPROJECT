@@ -58,7 +58,7 @@ app.get('/countries/:co_code', (req, res) => {
     //res.send(req.params.co_code)
     home.deleteCountry(req.params.co_code)
         .then((result) => {
-            res.send(result)
+           res.redirect('/countries')
         })
         .catch((error) => {
             res.send(error)
@@ -69,19 +69,20 @@ app.get('/addCountry', (req, res) => {
     res.render("addCountry")
 })
 //rendering the update country page
-/*app.get('/updateCountry/:co_code', (req, res) => {
+app.get('/updateCountry/:co_code', (req, res) => {
     home.getCountries(req.params.co_code)
     .then((result)=>{
+        console.log(result)
         res.render("update", {countries: result[0]})
     })
     .catch((error)=>{
         res.send(error)
     })
-})*/
-app.get('/updateCountry/:co_code', (req, res) => {
+})
+/*app.get('/updateCountry/:co_code', (req, res) => {
         res.render('update');
    
-})
+})*/
 //post method to post the query result to the server
 app.post("/updateCountry", (req, res) => {
     var myQuery = {
@@ -117,7 +118,7 @@ app.post("/addCountry", (req, res) => {
 app.get('/cities/:cty_code', (req, res) => {
     cities.cityDetails(req.params.cty_code)
     .then((result) => {
-        res.send(result)
+        res.render('allcities', {cities: result})
     })
     .catch((error) => {
         res.send(error)

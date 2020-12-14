@@ -17,11 +17,16 @@ mysql.createPool({
         console.log(error)
     })
     //get countries function
-var getCountries = function () {
+var getCountries = function (co_code) {
      //return a new promise
     return new Promise((resolve, reject) => {
          //query then sends a result
-        pool.query('select * from country;')
+         myQuery = (co_code == undefined ? "select * from country": "select * from country where co_code = ?;");
+         var queryObj = {
+             sql: myQuery,
+             values: [co_code]
+         }
+        pool.query(queryObj)
             .then((result) => {
                 resolve(result)
             })
