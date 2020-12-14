@@ -69,18 +69,29 @@ app.get('/addCountry', (req, res) => {
     res.render("addCountry")
 })
 //rendering the update country page
+/*app.get('/updateCountry/:co_code', (req, res) => {
+    home.getCountries(req.params.co_code)
+    .then((result)=>{
+        res.render("update", {countries: result[0]})
+    })
+    .catch((error)=>{
+        res.send(error)
+    })
+})*/
 app.get('/updateCountry/:co_code', (req, res) => {
-    res.render("update")
+        res.render('update');
+   
 })
 //post method to post the query result to the server
 app.post("/updateCountry", (req, res) => {
     var myQuery = {
-        sql: 'INSERT INTO country VALUES (?, ?, ?)',
-        values: [req.body.co_code, req.body.co_name, req.body.co_details]
+        sql: 'update country set co_name =?, co_details=? where co_code =?',
+        values: [req.body.co_name, req.body.co_details, req.body.co_code]
     }
     pool.query(myQuery)
         .then((data) => {
-            console.log(data)
+            res.send(data)
+            //res.redirect('/countries')
         })
         .catch((error) => {
             console.log(error)
@@ -94,6 +105,7 @@ app.post("/addCountry", (req, res) => {
     }
     pool.query(myQuery)
         .then((data) => {
+            res.redirect('/countries')
             console.log(data)
         })
         .catch((error) => {
@@ -120,6 +132,19 @@ app.get('/cities', (req, res) => {
         .catch((error) => {
             res.send(error)
         })
+})
+//rendering the head of state page
+app.get('/addHeadOfState', (req, res) => {
+    res.render("addHeadOfState")
+})
+//post mehtod to send the result of the query to the view page
+app.post('/addHeadOfState', (req, res)=>{
+    mongoDAO.addHeadOfState(req.body._id, req.body.headOfState)
+    .then((result)=>{
+        res.redirect('/headofstate')
+    }).catch((error)=>{
+        res.send(error)
+    })
 })
 
 //listening at port 300 for a connection

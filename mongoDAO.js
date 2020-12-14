@@ -31,4 +31,15 @@ var getHeadOfState = function(){
     })
 
 }
-module.exports = {getHeadOfState}
+var addHeadOfState = function(_id, headOfState){
+    return new Promise((resolve, reject)=>{
+        headsOfState.insertOne({"_id":_id, "headOfState":headOfState})
+        .then((result)=>{
+            resolve(result)
+        })
+        .catch((error)=>{
+            reject(error)
+        })
+    })
+}
+module.exports = {getHeadOfState, addHeadOfState}

@@ -48,5 +48,23 @@ var deleteCountry = function (co_code) {
             })
     })
 }
+var updateCountry = function ( co_name,co_details, co_code) {
+    //return a new promise
+   return new Promise((resolve, reject) => {
+     //query then sends a result
+       var newQuery ={
+        sql: 'update country set co_name =?, co_details=? where co_code =?',
+        values: [co_name, co_details, co_code]
+       }
+       pool.query(newQuery)
+           .then((result) => {
+               resolve(result)
+           })
+           .catch((error) => {
+               reject(error)
+           })
+   })
+}
+
 //exporting the modules so they can be accessed in the index. js page
-    module.exports = { getCountries, deleteCountry }
+    module.exports = { getCountries, deleteCountry, updateCountry }
