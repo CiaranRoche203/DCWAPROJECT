@@ -91,8 +91,8 @@ app.post("/updateCountry", (req, res) => {
     }
     pool.query(myQuery)
         .then((data) => {
-            res.send(data)
-            //res.redirect('/countries')
+            //res.send(data)
+            res.redirect('/countries')
         })
         .catch((error) => {
             console.log(error)
