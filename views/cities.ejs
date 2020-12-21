@@ -1,20 +1,33 @@
 <html>
 
 <body>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        </style>
 
-
-    <a href="http://localhost:3000/">Return</a> 
+    <a href="http://localhost:3000/"><button type="button">Return Home</button></a> 
+    <br>
+    <br>
     <table>
         <tr>
-            <th>cty_code</th>
-            <th>co_code</th>
-            <th>cty_name</th>
+            <th>City Code</th>
+            <th>Country Code</th>
+            <th>City Name</th>
+            <th>population</th>
+            <th>isCoastal</th>
+            <th>areaKM</th>
             <th>Details</th>
            
         </tr><% cities.forEach((cities)=>{%><tr>
             <td><%= cities.cty_code %></td>
             <td><%= cities.co_code %></td>
             <td><%= cities.cty_name %></td>
+            <td><%= cities.population %></td>
+            <td><%= cities.isCoastal %></td>
+            <td><%= cities.areaKM %></td>
             <td>
                <a href="/cities/<%= cities.cty_code %>"> <button type="button">Details</button></a>
             </td> 

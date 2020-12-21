@@ -1,10 +1,18 @@
 <html>
 
 <body>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        </style>
     <h2>
         Heads of State
     </h2>
-    <a href="http://localhost:3000/addHeadOfState">Add Head of State</a> 
+    <a href="http://localhost:3000/addHeadOfState"><button type="button">Add Head Of State</button></a> 
+    <br>
+    <br>
     <table>
         <tr>
             <th>_id</th>
@@ -15,7 +23,10 @@
             <td><%= headofstate.headOfState %></td>
         </tr>
         <%})%>
-        </table
+    </table>
+    <br>
+    <br>
+    <a href="http://localhost:3000/"><button type="button">Home</button></a> 
       
 </body>
 

@@ -50,7 +50,7 @@ app.get('/countries', (req, res) => {
             res.render('countries', { countries: result })
         })
         .catch((error) => {
-            res.send(error)
+            res.send('<h3>Error Cannot Connect to database! </h3')
         })
 })
 //get method for getting an individual country and deleting it
@@ -61,7 +61,7 @@ app.get('/countries/:co_code', (req, res) => {
            res.redirect('/countries')
         })
         .catch((error) => {
-            res.send(error)
+            res.send('<h3>Country has cities, cannot be deleted </h3')
         })
 })
 //rendering the add country page
@@ -110,7 +110,7 @@ app.post("/addCountry", (req, res) => {
             console.log(data)
         })
         .catch((error) => {
-            console.log(error)
+           res.send('<h3>Country already exists </h3')
         })
 })
 //cities individual method
@@ -131,7 +131,7 @@ app.get('/cities', (req, res) => {
             res.render('cities', { cities: result })
         })
         .catch((error) => {
-            res.send(error)
+            res.send('<h3>Error Cannot Connect to database! </h3')
         })
 })
 //rendering the head of state page
@@ -144,7 +144,7 @@ app.post('/addHeadOfState', (req, res)=>{
     .then((result)=>{
         res.redirect('/headofstate')
     }).catch((error)=>{
-        res.send(error)
+        res.send('<h3>Error Cannot Connect to database! </h3')
     })
 })
 

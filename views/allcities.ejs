@@ -1,11 +1,17 @@
 <html>
 
 <body>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        </style>
     <table>
         <tr>
-            <th>cty_code</th>
-            <th>co_code</th>
-            <th>cty_name</th>
+            <th>City Code</th>
+            <th>Country Code</th>
+            <th>City Name</th>
             <th>population</th>
             <th>isCoastal</th>
             <th>areaKM</th>
@@ -18,7 +24,8 @@
             <td><%= cities.areaKM %></td>
         </tr>
         <%})%>
-        </table
+    </table>
+    <a href="http://localhost:3000/cities">Home</a> 
       
 </body>
 

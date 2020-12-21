@@ -2,14 +2,23 @@
 
 <body>
 
-
-    <a href="http://localhost:3000/addCountry">Add Country</a> 
-    <a href="http://localhost:3000/">Return To Main Page</a>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        </style>
+        <h2>
+            Countries
+        </h2>
+    <a href="http://localhost:3000/addCountry"><button type="button">Add Country</button></a> 
+    <br>
+    <br>
     <table>
         <tr>
-            <th>co_code</th>
-            <th>co_name</th>
-            <th>co_details</th>
+            <th>Country Code</th>
+            <th>Country Name</th>
+            <th>Country Details</th>
             <th>update</th>
             <th>delete</th>
         </tr><% countries.forEach((countries)=>{%><tr>
@@ -24,7 +33,10 @@
             </td> 
         </tr>
         <%})%>
-        </table
+    </table>
+    <br>
+    <br>
+    <a href="http://localhost:3000/"><button type="button">Return Home</button></a>
       
 </body>
 
