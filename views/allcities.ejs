@@ -1,12 +1,14 @@
 <html>
 
 <body>
+       <!--Make a border for the tables-->
     <style>
         table, th, td {
           border: 1px solid black;
           border-collapse: collapse;
         }
         </style>
+           <!--Create a table to display the data-->
     <table>
         <tr>
             <th>City Code</th>
@@ -15,6 +17,7 @@
             <th>population</th>
             <th>isCoastal</th>
             <th>areaKM</th>
+               <!--access the data by calling cities from index.js and displaying its info-->
         </tr><% cities.forEach((cities)=>{%><tr>
             <td><%= cities.cty_code %></td>
             <td><%= cities.co_code %></td>
@@ -25,6 +28,7 @@
         </tr>
         <%})%>
     </table>
+       <!--Button to link back to cities page-->
     <a href="http://localhost:3000/cities">Home</a> 
       
 </body>

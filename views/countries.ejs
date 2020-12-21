@@ -1,7 +1,7 @@
 <html>
 
 <body>
-
+ <!--Make a border for the tables-->
     <style>
         table, th, td {
           border: 1px solid black;
@@ -14,6 +14,7 @@
     <a href="http://localhost:3000/addCountry"><button type="button">Add Country</button></a> 
     <br>
     <br>
+       <!--Create a table to display the data-->
     <table>
         <tr>
             <th>Country Code</th>
@@ -21,13 +22,16 @@
             <th>Country Details</th>
             <th>update</th>
             <th>delete</th>
+              <!--access the data by calling countries from index.js and displaying its info-->
         </tr><% countries.forEach((countries)=>{%><tr>
             <td><%= countries.co_code %></td>
             <td><%= countries.co_name %></td>
             <td><%= countries.co_details %></td>
+             <!--access the method where you can update the country and only this country specified-->
             <td>
                <a href="http://localhost:3000/updateCountry/<%= countries.co_code %>"> <button type="button">Update</button></a>
             </td> 
+            <!--access the method where you can delete the country and only this country specified-->
             <td>
                 <a href="/countries/<%= countries.co_code %>"> <button type="button">Delete</button></a>
             </td> 

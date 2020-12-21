@@ -1,6 +1,7 @@
 <html>
 
 <body>
+     <!--Make a border for the tables-->
     <style>
         table, th, td {
           border: 1px solid black;
@@ -13,11 +14,12 @@
     <a href="http://localhost:3000/addHeadOfState"><button type="button">Add Head Of State</button></a> 
     <br>
     <br>
+      <!--Create a table to display the data-->
     <table>
         <tr>
             <th>_id</th>
             <th>headOfState</th>
-           
+              <!--access the data by calling headofstate from index.js and displaying its info-->
         </tr><% headofstate.forEach((headofstate)=>{%><tr>
             <td><%= headofstate._id %></td>
             <td><%= headofstate.headOfState %></td>

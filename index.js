@@ -24,14 +24,19 @@ mysql.createPool({
     .catch((error) => {
         console.log(error)
     })
+
+
     //use of body parser for web app functionality
 app.use(bodyParser.urlencoded({ extended: false }))
+
 //used so we can view the web pages
 app.set('view engine', 'ejs')
+
 //home page get method
 app.get('/', (req, res) => {
    res.render("home")
 })
+
 //getting the view page of the heads of state and rendering it for view
 app.get('/headofstate', (req, res) => {
    mongoDAO.getHeadOfState()
@@ -42,6 +47,7 @@ app.get('/headofstate', (req, res) => {
        res.send(error)
    })
  })
+
 //get method for countries where we display all the countries on one page
 app.get('/countries', (req, res) => {
     home.getCountries()
@@ -53,9 +59,9 @@ app.get('/countries', (req, res) => {
             res.send('<h3>Error Cannot Connect to database! </h3')
         })
 })
+
 //get method for getting an individual country and deleting it
 app.get('/countries/:co_code', (req, res) => {
-    //res.send(req.params.co_code)
     home.deleteCountry(req.params.co_code)
         .then((result) => {
            res.redirect('/countries')
@@ -64,10 +70,12 @@ app.get('/countries/:co_code', (req, res) => {
             res.send('<h3>Country has cities, cannot be deleted </h3')
         })
 })
+
 //rendering the add country page
 app.get('/addCountry', (req, res) => {
     res.render("addCountry")
 })
+
 //rendering the update country page
 app.get('/updateCountry/:co_code', (req, res) => {
     home.getCountries(req.params.co_code)
@@ -79,10 +87,7 @@ app.get('/updateCountry/:co_code', (req, res) => {
         res.send(error)
     })
 })
-/*app.get('/updateCountry/:co_code', (req, res) => {
-        res.render('update');
-   
-})*/
+
 //post method to post the query result to the server
 app.post("/updateCountry", (req, res) => {
     var myQuery = {
@@ -98,6 +103,7 @@ app.post("/updateCountry", (req, res) => {
             console.log(error)
         })
 })
+
 //post method to post the details of the query to the server
 app.post("/addCountry", (req, res) => {
     var myQuery = {
@@ -113,6 +119,7 @@ app.post("/addCountry", (req, res) => {
            res.send('<h3>Country already exists </h3')
         })
 })
+
 //cities individual method
 //used to get one citys individual data on a page
 app.get('/cities/:cty_code', (req, res) => {
@@ -124,6 +131,7 @@ app.get('/cities/:cty_code', (req, res) => {
         res.send(error)
     })
 })
+
 //get method to get all the cities details on one page
 app.get('/cities', (req, res) => {
     cities.getCities()
@@ -134,11 +142,13 @@ app.get('/cities', (req, res) => {
             res.send('<h3>Error Cannot Connect to database! </h3')
         })
 })
+
 //rendering the head of state page
 app.get('/addHeadOfState', (req, res) => {
     res.render("addHeadOfState")
 })
-//post mehtod to send the result of the query to the view page
+
+//post method to send the result of the query to the view page
 app.post('/addHeadOfState', (req, res)=>{
     mongoDAO.addHeadOfState(req.body._id, req.body.headOfState)
     .then((result)=>{

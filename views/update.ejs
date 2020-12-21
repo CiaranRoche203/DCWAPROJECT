@@ -1,15 +1,16 @@
 <html>
 
 <body>
-
+<!--update country page-->
     <h2>
         Update Country
     </h2>
-
+<!--access the update country method. the post method-->
     <form action="/updateCountry" method="POST">
     <label>
        Country Code
     </label>
+    <!--display the country code of the country you wish to edit and make it read only so it can not be changed-->
     <input value="<%= countries.co_code %>" name="co_code" readonly>
     <br>
     <br>
@@ -25,6 +26,7 @@
     <input type="text" name="co_details">
     <br>
     <br>
+    <!--submit the updated record-->
     <input type="submit" value="OK">
   
 </form>

@@ -1,6 +1,7 @@
 <html>
 
 <body>
+     <!--Make a border for the tables-->
     <style>
         table, th, td {
           border: 1px solid black;
@@ -11,6 +12,7 @@
     <a href="http://localhost:3000/"><button type="button">Return Home</button></a> 
     <br>
     <br>
+     <!--Create a table to display the data-->
     <table>
         <tr>
             <th>City Code</th>
@@ -20,7 +22,7 @@
             <th>isCoastal</th>
             <th>areaKM</th>
             <th>Details</th>
-           
+              <!--access the data by calling cities from index.js and displaying its info-->
         </tr><% cities.forEach((cities)=>{%><tr>
             <td><%= cities.cty_code %></td>
             <td><%= cities.co_code %></td>
@@ -33,7 +35,7 @@
             </td> 
         </tr>
         <%})%>
-        </table
+    </table>
 
 </body>
 </html>
