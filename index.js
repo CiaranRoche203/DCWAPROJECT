@@ -1,7 +1,8 @@
 //imports that are required in order to access other js pages and express features
 const express = require('express')
-var home = require('./home')
-var cities = require('./cities')
+//var home = require('./home')
+//var cities = require('./cities')
+var mySQLDAO = require('./mySQLDAO')
 var ejs = require('ejs')
 var bodyParser = require('body-parser')
 const app = express()
@@ -50,7 +51,7 @@ app.get('/headofstate', (req, res) => {
 
 //get method for countries where we display all the countries on one page
 app.get('/countries', (req, res) => {
-    home.getCountries()
+    mySQLDAO.getCountries()
         .then((result) => {
             console.log(result)
             res.render('countries', { countries: result })
@@ -62,7 +63,7 @@ app.get('/countries', (req, res) => {
 
 //get method for getting an individual country and deleting it
 app.get('/countries/:co_code', (req, res) => {
-    home.deleteCountry(req.params.co_code)
+    mySQLDAO.deleteCountry(req.params.co_code)
         .then((result) => {
            res.redirect('/countries')
         })
@@ -78,7 +79,7 @@ app.get('/addCountry', (req, res) => {
 
 //rendering the update country page
 app.get('/updateCountry/:co_code', (req, res) => {
-    home.getCountries(req.params.co_code)
+    mySQLDAO.getCountries(req.params.co_code)
     .then((result)=>{
         console.log(result)
         res.render("update", {countries: result[0]})
@@ -123,7 +124,7 @@ app.post("/addCountry", (req, res) => {
 //cities individual method
 //used to get one citys individual data on a page
 app.get('/cities/:cty_code', (req, res) => {
-    cities.cityDetails(req.params.cty_code)
+    mySQLDAO.cityDetails(req.params.cty_code)
     .then((result) => {
         res.render('allcities', {cities: result})
     })
@@ -134,7 +135,7 @@ app.get('/cities/:cty_code', (req, res) => {
 
 //get method to get all the cities details on one page
 app.get('/cities', (req, res) => {
-    cities.getCities()
+    mySQLDAO.getCities()
         .then((result) => {
             res.render('cities', { cities: result })
         })
