@@ -107,11 +107,7 @@ app.post("/updateCountry", (req, res) => {
 
 //post method to post the details of the query to the server
 app.post("/addCountry", (req, res) => {
-    var myQuery = {
-        sql: 'INSERT INTO country VALUES (?, ?, ?)',
-        values: [req.body.co_code, req.body.co_name, req.body.co_details]
-    }
-    pool.query(myQuery)
+    mySQLDAO.addCountry(req.body.co_code, req.body.co_name, req.body.co_details)
         .then((data) => {
             res.redirect('/countries')
             console.log(data)
