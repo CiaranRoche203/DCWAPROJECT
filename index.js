@@ -65,10 +65,21 @@ app.get('/countries', (req, res) => {
 app.get('/countries/:co_code', (req, res) => {
     mySQLDAO.deleteCountry(req.params.co_code)
         .then((result) => {
-           res.redirect('/countries')
+            if (result.affectedRows == 0) {
+                res.send("<h3>Country: " + req.params.co_code + " doesnt exist")
+            }
+            else {
+                res.send("<h3> Country: " + req.params.co_code + " deleted")
+            }
+            res.send(result);
         })
-        .catch((error) => {
-            res.send('<h3>Country has cities, cannot be deleted </h3')
+        .catch((err) => {
+            if (err.code == "ER_ROW_IS_REFERENCED_2") {
+                res.send("<h3> ERROR: " + err.errno + " cannot delete country with ID:" + req.params.co_code + " as it has cities");
+            }
+            else {
+                res.send("<h3> ERROR: " + err.errno + " " + error.sqlMessage)
+            }
         })
 })
 
@@ -81,8 +92,14 @@ app.get('/addCountry', (req, res) => {
 app.get('/updateCountry/:co_code', (req, res) => {
     mySQLDAO.getCountries(req.params.co_code)
     .then((result)=>{
-        console.log(result)
-        res.render("update", {countries: result[0]})
+        if(result.length > 0){
+            console.log(result)
+            res.render("update", {countries: result[0]})
+        }
+        else{
+            res.send("<h3> No such country exists </h3>")
+        }
+      
     })
     .catch((error)=>{
         res.send(error)
@@ -91,14 +108,16 @@ app.get('/updateCountry/:co_code', (req, res) => {
 
 //post method to post the query result to the server
 app.post("/updateCountry", (req, res) => {
-    var myQuery = {
+    /*var myQuery = {
         sql: 'update country set co_name =?, co_details=? where co_code =?',
         values: [req.body.co_name, req.body.co_details, req.body.co_code]
     }
-    pool.query(myQuery)
+    pool.query(myQuery)*/
+    mySQLDAO.updateCountry(req.body.co_name, req.body.co_details, req.body.co_code)
         .then((data) => {
             //res.send(data)
             res.redirect('/countries')
+            //console.log(data)
         })
         .catch((error) => {
             console.log(error)

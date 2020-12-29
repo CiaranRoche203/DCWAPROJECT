@@ -106,12 +106,11 @@ var updateCountry = function ( co_name,co_details, co_code) {
    //return a new promise
   return new Promise((resolve, reject) => {
     //query then sends a result
-      myQuery = (co_code == undefined ? "select * from country where co_code=?": "update country set co_name =?, co_details=? where co_code =?;");
-      var queryObj = {
-          sql: myQuery,
-          values: [co_code, co_name, co_details, co_code]
-      }
-     pool.query(queryObj)
+    var myQuery = {
+        sql: 'update country set co_name =?, co_details=? where co_code =?',
+        values: [co_name, co_details, co_code]
+    }
+    pool.query(myQuery)
           .then((result) => {
               resolve(result)
           })
